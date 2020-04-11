@@ -1,22 +1,23 @@
 <!DOCTYPE html>
-<html>
-   <link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
-<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script> 
-    
-<div id="gitalk-container"></div>
-<script>
-var gitalk = new Gitalk({
-    id: 'www.xttblog.com?p=2746',
-    clientID: '8811d068ac79ca76cf94',
-    clientSecret: '1d09cff5a848cd523e4509cab4e6a838c22558f6',
-    repo: 'blog-comments',
-    owner: 'Sunnyfee',//github用户名
-    admin: ['Sunnyfee'],//github用户名
-    labels: ['gitment'],
-    perPage: 50,
-})
-gitalk.render('gitalk-container')
-</script>
-    
-    
-</html>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700'>
+<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'>
+<script src="https://wow.techbrood.com/libs/jquery/jquery-1.11.1.min.js"></script>
+<article class="contentainer flex column">
+    <div class="coursainer flex column">
+        <input type="checkbox" id="add-form-checkbox" style="display: none;">
+        <div>
+            <p>Ugh Title</p>
+            <label onclick="remove();"><i class="material-icons">delete_forever</i>
+            </label>
+            <label for="add-form-checkbox"><i class="material-icons">add</i>
+            </label>
+        </div>
+        <section class="add-form flex column">
+            <input type="text" id="ugh-text" placeholder="Ugh Text">
+            <input type="text" id="ugh-date" placeholder="Ugh Date">
+            <button onclick="add();">Ugh Add</button>
+        </section>
+        <div class="courses-list" id="courses-list"></div>
+    </div>
+</article>
