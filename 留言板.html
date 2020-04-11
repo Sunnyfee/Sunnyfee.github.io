@@ -1,37 +1,61 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>留言板</title>
-<style>
-	#txt{width:600px;height:600px;margin:200px auto;border:lpx solid #DD1C1C;}
-	#lis{width:600px; height:300px;margin:50px auto;background:#4E7098;}
-	</style>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <h1>贫穷の留言板</h1>
+        <textarea id="memo" cols="60" rows="10"></textarea>
+        <input type="button" value="追加内容" onclick="saveStorage('memo')" />
+        <input type="button" value="初始化" onclick="clearStorage('msg')" />
+        <hr />
+        <p id="msg"></p>
+        <script type="text/javascript">
 
-<body>
-	<div id="txt">
-    <textarea  id="text" value="" cols="80" rows="10"></textarea><br>
-       <button type="button" id="btn">SEND</button>
-       <div id="lis">
-         <ol id="text_li">
-         </ol>
-       </div>
-		
-	<script type="text/javascript">
-     var tet= document.getElementById("text");
-     var butt= document.getElementById("btn");
-     var tet_li= document.getElementById("text_li");
+            function saveStorage(id) {
+                //获取textarea的value值
+                var data = document.getElementById(id).value;
+                //获取当前时间戳
+                var time = new Date().getTime();
+                //将时间戳作为键值，textarea的value值作为键值的内容保存在本地数据库
+                localStorage.setItem(time,data);
+                //保存成功后提示成功
+                console.log("数据已保存");
+                //设置loadStorage函数的传参（ID值）
+                loadStorage('msg');
+            }
 
-      butt.onclick = function msg(){
+            function loadStorage(id) {
+                var result = '<table border="1">';
+                //遍历本地数据所有内容
+                for(var i = 0; i < localStorage.length; i++) {
+                    //获取每一条新增的键值
+                    var kes = localStorage.key(i);
+                    //获取新增键值的内容
+                    var value = localStorage.getItem(kes);
+                    //获取时间对象
+                    var date = new Date();
+                    //将时间戳转化为正常时间 Mon Jun 19 1972 11:12:44 GMT+0800 (中国标准时间) 的格式
+                    date.setTime(kes);
+                    //将转化后的内容变成字符串
+                    var datestr = date.toGMTString();
+                    //将所有新增内容添加到result变量中
+                    result += '<tr><td>' + value + '</td><td>' + datestr + '</td></tr>'
+                }
+                result += '</table>';
+                var target = document.getElementById(id);
+                //将所有内容添加到元素中显示
+                target.innerHTML = result;
 
-      var Li= document.createElement("li");
-      Li.innerHTML= tet.value;
-      tet_li.appendChild(Li);
-			  
-      }
-   </script>
-		
-    </div>
-</body>
+            }
+
+            function clearStorage() {
+                //清除本地储存所有内容
+                localStorage.clear();  
+                console.log("清除完毕");
+            }
+
+        </script>
+    </body>
 </html>
