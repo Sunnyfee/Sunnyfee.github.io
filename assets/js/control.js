@@ -8,7 +8,7 @@ var MARGINTOP=60;
 
 var MARGINLEFT=30;
 
-const endTime=new Date(2016,8,23,14,06,52);
+const endTime=new Date(2020,6,02,0,00,52);
 
 var curShowTimeSeconds=0;
 
